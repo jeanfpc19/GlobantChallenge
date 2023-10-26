@@ -7,7 +7,7 @@ Created on Wed Oct 25 23:23:28 2023
 
 from flask import Flask, jsonify, request
 import pandas as pd
-from db_utils import create_table
+from db_utils import create_table, insert_df_into_table
 
 
 app = Flask(__name__)
@@ -28,6 +28,7 @@ def upload_file(table_name):
         df = pd.read_csv(uploaded_file, header=None, names=column_names[table_name])
         
         create_table(table_name)
+        insert_df_into_table(table_name, df)
         
         return jsonify({'message': f'Data uploaded to {table_name} successfully'})
     else:

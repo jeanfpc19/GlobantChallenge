@@ -5,9 +5,10 @@ Created on Wed Oct 25 23:04:44 2023
 @author: jeanfran.pinerua
 """
 import sqlite3
+dbName = 'GlobantHR.db'
 
 def create_table(table_name):
-    conn = sqlite3.connect('GlobantHR.db')
+    conn = sqlite3.connect(dbName)
     c = conn.cursor()
     
     if table_name == 'departments':
@@ -36,3 +37,11 @@ def create_table(table_name):
     
     conn.commit()
     conn.close()
+    
+def insert_df_into_table(table_name,df):
+        conn = sqlite3.connect(dbName)
+        
+        df.to_sql(table_name, conn, if_exists='append', index=False)
+        
+        conn.commit()
+        conn.close()
