@@ -33,7 +33,7 @@ This API provides endpoints to migrate historical HR data, including uploading C
   *Example*
 - Use a tool like Postman to make POST requests to http://127.0.0.1:5000/upload/jobs. Attaching the jobs.csv file with the request.
 - Or using the python request library you could upload files like this:
-        import request
+  
         file_path = 'files/jobs.csv'
         files = {'file': open(file_path, 'rb')}
         response = requests.post('[{url}](http://127.0.0.1:5000)/upload/jobs', files=files)
@@ -43,9 +43,11 @@ This API provides endpoints to migrate historical HR data, including uploading C
  The API is programmed to provide 2 types of metrics
         1. quarterly_hired_employees
         2. high_hires_departments
+        
  *Example*
- Use a tool like Postman to make GET requests to http://127.0.0.1:5000/metrics/high_hires_departments
- Or using the python request and pandas library you could get the metrics like this:
+- Use a tool like Postman to make GET requests to http://127.0.0.1:5000/metrics/high_hires_departments
+- Or using the python request and pandas library you could get the metrics like this:
+  
       url = 'http://127.0.0.1:5000/metrics/high_hires_departments'
       response = requests.get(url)
       df = pd.DataFrame(response.json())
