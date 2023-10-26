@@ -7,6 +7,7 @@ Created on Wed Oct 25 23:23:28 2023
 
 from flask import Flask, jsonify, request
 import pandas as pd
+from datetime import datetime
 from db_utils import create_table, insert_df_into_table
 
 
@@ -26,6 +27,7 @@ def upload_file(table_name):
             return jsonify({'error': 'Invalid table name provided'}), 400
         
         df = pd.read_csv(uploaded_file, header=None, names=column_names[table_name])
+        df['upload_timestamp'] = datetime.now()
         
         create_table(table_name)
         insert_df_into_table(table_name, df)

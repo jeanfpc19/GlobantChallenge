@@ -15,13 +15,15 @@ def create_table(table_name):
         c.execute('''
             CREATE TABLE IF NOT EXISTS departments
             (id INTEGER,
-            department TEXT)
+            department TEXT,
+            upload_timestamp DATETIME)
         ''')
     elif table_name == 'jobs':
         c.execute('''
             CREATE TABLE IF NOT EXISTS jobs
             (id INTEGER,
-            job TEXT)
+            job TEXT, 
+            upload_timestamp DATETIME)
         ''')
     elif table_name == 'hired_employees':
         c.execute('''
@@ -30,10 +32,9 @@ def create_table(table_name):
             name TEXT,
             datetime TEXT,
             department_id INTEGER,
-            job_id INTEGER)
+            job_id INTEGER,
+            upload_timestamp DATETIME)
         ''')
-    else:
-        print(f'Invalid table name: {table_name}')
     
     conn.commit()
     conn.close()
